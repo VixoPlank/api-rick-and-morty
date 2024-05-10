@@ -1,10 +1,8 @@
-import axios from "axios";
-
-const BASE_URL = "https://rickandmortyapi.com/api";
+import { axiosClient } from "@/lib/axiosClient";
 
 export const getPlanets = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/location`);
+    const response = await axiosClient.get("/location");
     return response.data;
   } catch (error) {
     console.error("Error al obtener los planetas:", error);
@@ -14,7 +12,7 @@ export const getPlanets = async () => {
 
 export const getPlanetById = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/location/${id}`);
+    const response = await axiosClient.get(`/location/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener el planeta especifico:", error);
@@ -24,7 +22,7 @@ export const getPlanetById = async (id) => {
 
 export const getCharacterById = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/character/${id}`);
+    const response = await axiosClient.get(`/character/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener el personaje esperifico", error);

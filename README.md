@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# API Rick & Morty
 
-First, run the development server:
+## Descripción
+Este proyecto es una aplicación web que utiliza la API pública de Rick and Morty para mostrar información sobre los personajes, episodios y locaciones de la serie. Es ideal para fans de la serie y desarrolladores que buscan ejemplos de cómo utilizar Next.js junto con TailwindCSS, Zustand y Axios.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Diseño
+El diseño de la interfaz de usuario de esta aplicación se basa en un diseño gratuito disponible en Figma Community. [Rick & Morty API](https://www.figma.com/file/hofzni8zddE3342U7nHg4N/React-design-(Rick-%26-Morty-API)-(Community)?type=design&node-id=0-1&mode=design&t=DaberMmMDDqXECG0-0). Este diseño fue adaptado y personalizado para ajustarse a las necesidades específicas de nuestra aplicación.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologías Usadas
+- **Next.js**: Framework de React para producción.
+- **TailwindCSS**: Framework CSS para diseño rápido y responsivo.
+- **Zustand**: Biblioteca de manejo de estado para React.
+- **Axios**: Cliente HTTP basado en promesas para hacer solicitudes HTTP.
+- **Tailwind Prettier**: Plugin de Prettier para mantener el formato de código consistente, especialmente útil al trabajar con TailwindCSS.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Instalación y Configuración
+Para instalar y ejecutar este proyecto en tu entorno local, sigue estos pasos:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clona este repositorio:
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   git clone https://github.com/VixoPlank/api-rick-and-morty
+   cd api-rick-and-morty
+   ```
+2. Instala las dependencias:
+    ```bash
+    npm install
+    ```
+3. Inicia el servidor de desarrollo:
+    ```bash
+    npm run dev
+    ```
+Esto arrancará el servidor en http://localhost:3000. Abre tu navegador y navega a esa dirección para ver la aplicación en funcionamiento.

@@ -52,15 +52,15 @@ const useStore = create((set) => ({
     }
   },
 
-  // cargarPersonajePorId: async (id) => {
-  //   set({ personajeSeleccionado: null, error: null }); // Reiniciar el estado antes de la nueva carga
-  //   const personaje = await getCharacterById(id);
-  //   if (personaje) {
-  //     set({ personajeSeleccionado: personaje });
-  //   } else {
-  //     set({ error: "Error al cargar el personaje específico" });
-  //   }
-  // },
+  loadCharacterById: async (id) => {
+    set({ characterSelected: null, error: null }); // Reiniciar el estado antes de la nueva carga
+    const character = await getCharacterById(id);
+    if (character) {
+      set({ characterSelected: character });
+    } else {
+      set({ error: "Error al cargar el personaje específico" });
+    }
+  },
 }));
 
 export default useStore;

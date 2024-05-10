@@ -1,0 +1,31 @@
+.star input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.star {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.star svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+  fill: white;
+}
+
+.star svg:hover {
+  transform: scale(1.1);
+}
+
+.star input:checked ~ svg {
+  fill: #86f54e;
+  color: #86f54e;
+}

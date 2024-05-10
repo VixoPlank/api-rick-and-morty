@@ -17,7 +17,7 @@ const Page = () => {
           <Image
             width={384}
             height={132}
-            src="/favorites.png"
+            src="/favorites.webp"
             alt="Favorites"
           />
         </figure>
@@ -25,7 +25,7 @@ const Page = () => {
       <article className="mt-7 ">
         <button className="group relative flex h-max w-max flex-row items-center justify-center gap-2 overflow-hidden rounded-lg bg-[#86f54e] p-2  text-gray-700 transition-all duration-200 focus:overflow-visible">
           <figure className="size-10">
-            <Image width={40} height={42} src="/neptuno.png" alt="" />
+            <Image width={40} height={42} src="/neptuno.webp" alt="" />
           </figure>
           <span className="text-lg font-bold">Buscar por Planeta</span>
           <svg

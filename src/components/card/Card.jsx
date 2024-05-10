@@ -25,7 +25,7 @@ const Card = ({ character }) => {
           href={`/character/${id}`}
           shallow={true}
         >
-          Go
+          GO
         </Link>
 
         <div className="bg-[#86f54e] p-5 tracking-tight text-gray-900 [&>h3]:text-lg [&>h3]:font-bold">

@@ -20,7 +20,7 @@ import Card from "./Card";
 import useStore from "@/store/store";
 
 export default function Carrousel() {
-  const personajes = useStore((state) => state.personajes);
+  const characters = useStore((state) => state.characters);
   return (
     <>
       <Swiper
@@ -51,7 +51,7 @@ export default function Carrousel() {
         }}
         className="mySwiper"
       >
-        {personajes.map((character) => {
+        {characters.map((character) => {
           return (
             <SwiperSlide key={character.id}>
               <Card character={character} />

@@ -1,48 +1,48 @@
 import { create } from "zustand";
 import axios from "axios";
 import {
-  obtenerPlanetas,
-  obtenerPlanetaPorId,
-  obtenerPersonajePorId,
+  getPlanets,
+  getPlanetById,
+  getCharacterById,
 } from "@/api/rickAndMorty";
 
 const useStore = create((set) => ({
-  planetas: [],
-  planetaSeleccionado: null,
-  personajes: [],
+  planets: [],
+  planetSelected: null,
+  characters: [],
   error: null,
 
-  cargarPlanetas: async () => {
-    const data = await obtenerPlanetas();
+  loadPlanets: async () => {
+    const data = await getPlanets();
     if (data) {
-      set({ planetas: data.results, error: null });
+      set({ planets: data.results, error: null });
     } else {
       set({ error: "No se pudo cargar los planetas" });
     }
   },
 
-  seleccionarPlaneta: async (id) => {
+  selectPlanet: async (id) => {
     set({
-      planetaSeleccionado: null,
-      personajes: [],
+      planetSelected: null,
+      characters: [],
       error: null,
       planetId: id,
     });
-    const data = await obtenerPlanetaPorId(id);
+    const data = await getPlanetById(id);
     if (data) {
-      set({ planetaSeleccionado: data, error: null });
+      set({ planetSelected: data, error: null });
       try {
-        const personajesEndPointList = data.residents;
-        const peticiones = await Promise.all(
-          personajesEndPointList.map((endPoint) => {
+        const charactersEndPointList = data.residents;
+        const requests = await Promise.all(
+          charactersEndPointList.map((endPoint) => {
             return axios.get(endPoint);
           }),
         );
 
-        const personajes = peticiones.map(({ data }) => {
+        const characters = requests.map(({ data }) => {
           return data;
         });
-        set({ personajes });
+        set({ characters });
       } catch (error) {
         console.log(error);
         set({ error: "Error al cargar los personajes del planeta" });
@@ -52,15 +52,15 @@ const useStore = create((set) => ({
     }
   },
 
-  cargarPersonajePorId: async (id) => {
-    set({ personajeSeleccionado: null, error: null }); // Reiniciar el estado antes de la nueva carga
-    const personaje = await obtenerPersonajePorId(id);
-    if (personaje) {
-      set({ personajeSeleccionado: personaje });
-    } else {
-      set({ error: "Error al cargar el personaje específico" });
-    }
-  },
+  // cargarPersonajePorId: async (id) => {
+  //   set({ personajeSeleccionado: null, error: null }); // Reiniciar el estado antes de la nueva carga
+  //   const personaje = await getCharacterById(id);
+  //   if (personaje) {
+  //     set({ personajeSeleccionado: personaje });
+  //   } else {
+  //     set({ error: "Error al cargar el personaje específico" });
+  //   }
+  // },
 }));
 
 export default useStore;

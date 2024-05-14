@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getPlanets } from "@/api/rickAndMorty";
-import {} from "@/store/store";
+// import {} from "@/store/store";
 import Loading from "@/components/card/Loading";
 import "@/styles/button.css";
 

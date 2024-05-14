@@ -22,7 +22,7 @@ const Page = () => {
           />
         </figure>
       </header>
-      <article className="mt-7 ">
+      {/* <article className="mt-7 ">
         <button className="group relative flex h-max w-max flex-row items-center justify-center gap-2 overflow-hidden rounded-lg bg-[#86f54e] p-2  text-gray-700 transition-all duration-200 focus:overflow-visible">
           <figure className="size-10">
             <Image width={40} height={42} src="/neptuno.webp" alt="" />
@@ -50,7 +50,7 @@ const Page = () => {
             </span>
           </div>
         </button>
-      </article>
+      </article> */}
 
       {noFavoritesMessage}
     </section>

@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import useStore from "@/store/store";
+import usePlanetsStore from "@/store/planets";
 import Carrousel from "@/components/card/Carrousel";
 import Loading from "@/components/card/Loading";
 
 const PlanetDetails = ({ params: { planetId } }) => {
-  const selectPlanet = useStore((state) => state.selectPlanet);
-  const planet = useStore((state) => state.planetSelected);
-  const error = useStore((state) => state.error);
+  const selectPlanet = usePlanetsStore((state) => state.selectPlanet);
+  const planet = usePlanetsStore((state) => state.planetSelected);
+  const error = usePlanetsStore((state) => state.error);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

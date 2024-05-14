@@ -17,10 +17,10 @@ import {
 import Card from "./Card";
 
 // State
-import useStore from "@/store/store";
+import useCharactersStore from "@/store/characters";
 
 export default function Carrousel() {
-  const characters = useStore((state) => state.characters);
+  const characters = useCharactersStore((state) => state.characters);
   return (
     <>
       <Swiper

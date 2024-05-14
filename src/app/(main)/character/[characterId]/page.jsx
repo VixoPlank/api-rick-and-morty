@@ -3,10 +3,12 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import useStore from "@/store/store";
+import useCharactersStore from "@/store/characters";
+import usePlanetsStore from "@/store/planets";
 
 const Page = ({ params: { characterId } }) => {
-  const { characterSelected, loadCharacterById, planetId } = useStore();
+  const { characterSelected, loadCharacterById } = useCharactersStore();
+  const { planetId } = usePlanetsStore();
 
   useEffect(() => {
     loadCharacterById(characterId);

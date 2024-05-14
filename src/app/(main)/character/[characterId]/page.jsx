@@ -21,15 +21,17 @@ const Page = ({ params: { characterId } }) => {
         <Image src="/portal.gif" alt="portal gif" fill />
       </figure> */}
       {/* Imagen */}
-      <div>
-        <figure className="relative h-64 w-80 overflow-hidden rounded-3xl object-cover lg:h-full lg:w-[500px] lg:border-4 lg:border-gray-700">
-          <Image
-            src={characterSelected?.image}
-            alt={`Imagen de ${characterSelected?.name}`}
-            fill
-          />
-        </figure>
-      </div>
+      {characterSelected?.hasOwnProperty("image") && (
+        <div>
+          <figure className="relative h-64 w-80 overflow-hidden rounded-3xl object-cover lg:h-full lg:w-[500px] lg:border-4 lg:border-gray-700">
+            <Image
+              src={characterSelected?.image}
+              alt={`Imagen de ${characterSelected?.name}`}
+              fill
+            />
+          </figure>
+        </div>
+      )}
 
       {/* Detalles */}
       <div className="flex flex-col justify-between gap-y-6">

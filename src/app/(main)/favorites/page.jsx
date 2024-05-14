@@ -1,8 +1,18 @@
 "use client";
 
+import Loading from "@/components/card/Loading";
+import useCharactersStore from "@/store/characters";
+import { getLocalFavorites } from "@/utils";
 import Image from "next/image";
+import { useEffect } from "react";
 
 const Page = () => {
+  const { favorites, loadFavorites } = useCharactersStore();
+
+  useEffect(() => {
+    loadFavorites(getLocalFavorites());
+  }, [loadFavorites]);
+
   const noFavoritesMessage = (
     <p className="mt-5 text-center text-3xl text-white lg:px-72">
       No parece haber nada que mostrar aquí por el momento, si ves un personaje
@@ -52,7 +62,23 @@ const Page = () => {
         </button>
       </article> */}
 
-      {noFavoritesMessage}
+      {favorites?.length === 0 && <Loading />}
+
+      {favorites === null && noFavoritesMessage}
+
+      {favorites &&
+        Object.entries(favorites).length > 0 &&
+        (Array.isArray(favorites) ? (
+          /* Multiple */
+          favorites.map((f) => (
+            <p key={f.id} className="text-white">
+              {f.name}
+            </p>
+          ))
+        ) : (
+          /* 1 */
+          <p className="text-white">{favorites.name}</p>
+        ))}
     </section>
   );
 };

@@ -33,6 +33,20 @@ const useCharactersStore = create((set, get) => ({
     }
   },
 
+  loadFavorites: async (localFavorites) => {
+    const parsedLocalFavorites = localFavorites && JSON.parse(localFavorites);
+    if (!parsedLocalFavorites || parsedLocalFavorites.length === 0)
+      return set({ favorites: null });
+
+    const localFavoritesIds = parsedLocalFavorites.toString();
+    const favorites = await getCharacterById(localFavoritesIds);
+    if (!favorites || favorites.length === 0) {
+      set({ favorites: null });
+    } else {
+      set({ favorites });
+    }
+  },
+
   addFavorites: (idCharacter) => {
     const { favorites } = get();
     const newFavorites = [...favorites, idCharacter];

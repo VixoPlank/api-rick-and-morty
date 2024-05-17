@@ -13,6 +13,7 @@ El diseño de la interfaz de usuario de esta aplicación se basa en un diseño g
 - **Zustand**: Biblioteca de manejo de estado para React.
 - **Axios**: Cliente HTTP basado en promesas para hacer solicitudes HTTP.
 - **Tailwind Prettier**: Plugin de Prettier para mantener el formato de código consistente, especialmente útil al trabajar con TailwindCSS.
+- **Swiper.js**: Librería de JavaScript que se utiliza para crear carruseles de imágenes y otros elementos de contenido.
 
 ## Instalación y Configuración
 Para instalar y ejecutar este proyecto en tu entorno local, sigue estos pasos:

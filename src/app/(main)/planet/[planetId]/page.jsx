@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import usePlanetsStore from "@/store/planets";
-import Carrousel from "@/components/card/Carrousel";
+import CarrouselPlanets from "@/components/card/CarrouselPlanets";
 import Loading from "@/components/card/Loading";
 
 const PlanetDetails = ({ params: { planetId } }) => {
@@ -52,7 +52,7 @@ const PlanetDetails = ({ params: { planetId } }) => {
       </article>
 
       <article>
-        <Carrousel />
+        <CarrouselPlanets />
       </article>
     </section>
   );

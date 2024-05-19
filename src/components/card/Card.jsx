@@ -1,9 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import Star from "@/components/icons/Star";
+import useCharactersStore from "@/store/characters";
 
-const Card = ({ character }) => {
+const Card = ({ character, fromFavorites = false }) => {
   const { id, name, status, image } = character;
+  const toggleFavorite = useCharactersStore((state) => state.toggleFavorite);
+  const favorites = useCharactersStore((state) => state.favorites);
+  const isFavorite = favorites.some(
+    (currentCharacter) => id === currentCharacter.id,
+  );
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(character);
+  };
   return (
     <section className="mb-32 flex flex-col items-center lg:mb-0 lg:flex-row lg:justify-center">
       <div className=" mt-4 flex w-[280px] flex-col overflow-hidden rounded-lg shadow lg:mb-40 lg:mt-16">
@@ -16,13 +26,16 @@ const Card = ({ character }) => {
           />
         </figure>
 
-        <button className="absolute translate-x-2 translate-y-2 rounded-full border-lime-600 bg-gray-900 p-2 shadow-2xl">
-          <Star />
+        <button
+          className="absolute translate-x-2 translate-y-2 rounded-full border-lime-600 bg-gray-900 p-2 shadow-2xl"
+          onClick={handleToggleFavorite} // Maneja el clic en la estrella para agregar/quitar favoritos
+        >
+          <Star isFavorite={isFavorite} />
         </button>
 
         <Link
-          className="absolute translate-x-52 translate-y-64 rounded-full border-4 border-lime-600 bg-gray-900 p-4 shadow-2xl"
-          href={`/character/${id}`}
+          className="absolute translate-x-52 translate-y-64 rounded-full border-4 border-lime-600 bg-gray-900 p-4 shadow-2xl transition-transform duration-500 hover:scale-105"
+          href={`/character/${id}?from=${fromFavorites ? "favorites" : "planet"}`}
           shallow={true}
         >
           GO

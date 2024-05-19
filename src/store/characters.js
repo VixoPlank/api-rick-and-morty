@@ -1,49 +1,57 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import axios from "axios";
 import { getCharacterById } from "@/api/rickAndMorty";
-import usePlanetsStore from "./planets";
 
-const useCharactersStore = create((set, get) => ({
-  characters: [],
-  favorites: [],
-  error: null,
-  characterSelected: null,
+const useCharactersStore = create(
+  persist(
+    (set, get) => ({
+      characters: [],
+      favorites: [],
+      error: null,
+      characterSelected: null,
 
-  loadCharacters: async (characterEndpoints) => {
-    try {
-      const requests = characterEndpoints.map((endpoint) =>
-        axios.get(endpoint),
-      );
-      const responses = await Promise.all(requests);
-      const characters = responses.map((response) => response.data);
-      set({ characters });
-    } catch (error) {
-      console.error(error);
-      set({ error: "Error al cargar los personajes del planeta" });
-    }
-  },
+      loadCharacters: async (characterEndpoints) => {
+        try {
+          const requests = characterEndpoints.map((endpoint) =>
+            axios.get(endpoint),
+          );
+          const responses = await Promise.all(requests);
+          const characters = responses.map((response) => response.data);
+          set({ characters });
+        } catch (error) {
+          console.error(error);
+          set({ error: "Error al cargar los personajes del planeta" });
+        }
+      },
 
-  loadCharacterById: async (id) => {
-    set({ characterSelected: null, error: null });
-    try {
-      const character = await getCharacterById(id);
-      set({ characterSelected: character });
-    } catch {
-      set({ error: "Error al cargar el personaje específico" });
-    }
-  },
+      loadCharacterById: async (id) => {
+        set({ characterSelected: null, error: null });
+        try {
+          const character = await getCharacterById(id);
+          set({ characterSelected: character });
+        } catch {
+          set({ error: "Error al cargar el personaje específico" });
+        }
+      },
 
-  addFavorites: (idCharacter) => {
-    const { favorites } = get();
-    const newFavorites = [...favorites, idCharacter];
-    set({ favorites: newFavorites });
-  },
-
-  removeFavorites: (id) => {
-    const { favorites } = get();
-    const filteredFavorites = favorites.filter((c) => c.id !== id);
-    set({ favorites: filteredFavorites });
-  },
-}));
+      toggleFavorite: (character) => {
+        const { favorites } = get();
+        if (
+          favorites.some(
+            (currentCharacter) => character.id === currentCharacter.id,
+          )
+        ) {
+          set({
+            favorites: favorites.filter((fav) => fav.id !== character.id),
+          });
+        } else {
+          set({ favorites: [...favorites, character] });
+        }
+      },
+    }),
+    { name: "character-store" },
+  ),
+);
 
 export default useCharactersStore;

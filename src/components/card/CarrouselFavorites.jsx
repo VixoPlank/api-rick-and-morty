@@ -19,8 +19,10 @@ import Card from "./Card";
 // State
 import useCharactersStore from "@/store/characters";
 
-export default function Carrousel() {
-  const characters = useCharactersStore((state) => state.characters);
+export default function CarrouselFavorites() {
+  // Almacena la matriz de ID de personajes marcados como favoritos.
+  const favorites = useCharactersStore((state) => state.favorites);
+
   return (
     <>
       <Swiper
@@ -51,10 +53,10 @@ export default function Carrousel() {
         }}
         className="mySwiper"
       >
-        {characters.map((character) => {
+        {favorites.map((character) => {
           return (
             <SwiperSlide key={character.id}>
-              <Card character={character} />
+              <Card character={character} fromFavorites={true} />
             </SwiperSlide>
           );
         })}

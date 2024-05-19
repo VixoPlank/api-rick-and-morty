@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import CarrouselFavorites from "@/components/card/CarrouselFavorites";
+import useCharactersStore from "@/store/characters";
 
 const Page = () => {
+  const favorites = useCharactersStore((state) => state.favorites);
   const noFavoritesMessage = (
     <p className="mt-5 text-center text-3xl text-white lg:px-72">
       No parece haber nada que mostrar aquí por el momento, si ves un personaje
@@ -11,8 +14,8 @@ const Page = () => {
     </p>
   );
   return (
-    <section className="flex flex-col items-center">
-      <header>
+    <section>
+      <header className="flex flex-col items-center lg:flex-row lg:justify-center">
         <figure className="mx-auto mt-11 w-80 object-cover lg:w-96">
           <Image
             width={384}
@@ -51,8 +54,9 @@ const Page = () => {
           </div>
         </button>
       </article> */}
-
-      {noFavoritesMessage}
+      <article>
+        {favorites.length === 0 ? noFavoritesMessage : <CarrouselFavorites />}
+      </article>
     </section>
   );
 };
